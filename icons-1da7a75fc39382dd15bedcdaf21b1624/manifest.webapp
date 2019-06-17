@@ -3,9 +3,9 @@
   "name": "AnnaGenger",
   "description": null,
   "icons": {
-    "60": "/icons-1da7a75fc39382dd15bedcdaf21b1624/firefox_app_60x60.png",
-    "128": "/icons-1da7a75fc39382dd15bedcdaf21b1624/firefox_app_128x128.png",
-    "512": "/icons-1da7a75fc39382dd15bedcdaf21b1624/firefox_app_512x512.png"
+    "60": "/AnnaGenger/icons-1da7a75fc39382dd15bedcdaf21b1624/firefox_app_60x60.png",
+    "128": "/AnnaGenger/icons-1da7a75fc39382dd15bedcdaf21b1624/firefox_app_128x128.png",
+    "512": "/AnnaGenger/icons-1da7a75fc39382dd15bedcdaf21b1624/firefox_app_512x512.png"
   },
   "developer": {
     "name": null,
