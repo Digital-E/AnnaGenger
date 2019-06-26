@@ -1,24 +1,45 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "AnnaGenger",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Anna genger",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "http://samuelbassett.xyz",
   "dependencies": {
+    "animejs": "^3.0.1",
+    "babel-plugin-styled-components": "^1.10.1",
+    "body-scroll-lock": "^2.6.1",
+    "flickity-imagesloaded": "^2.0.0",
     "gatsby": "^2.4.2",
     "gatsby-image": "^2.0.41",
+    "gatsby-plugin-favicon": "^3.1.6",
     "gatsby-plugin-manifest": "^2.1.1",
     "gatsby-plugin-offline": "^2.1.0",
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-sharp": "^2.0.36",
+    "gatsby-plugin-styled-components": "^3.0.7",
     "gatsby-source-filesystem": "^2.0.33",
+    "gatsby-source-prismic": "^2.3.0-alpha.3",
     "gatsby-transformer-sharp": "^2.1.19",
+    "gsap": "^2.1.2",
+    "intersection-observer": "^0.7.0",
+    "lodash": "^4.17.11",
+    "modernizr": "^3.7.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
+    "react-bidirectional-infinite-scroll": "^2.0.1",
     "react-dom": "^16.8.6",
-    "react-helmet": "^5.2.1"
+    "react-flickity-component": "^3.2.0",
+    "react-helmet": "^5.2.1",
+    "react-perfect-scrollbar": "^1.5.0",
+    "react-pose": "^4.0.8",
+    "react-scrollmagic": "^2.1.0",
+    "react-text-fun": "^1.0.0",
+    "rolly.js": "^0.3.1",
+    "scrollmagic": "^2.0.6",
+    "styled-components": "^4.3.1"
   },
   "devDependencies": {
+    "gh-pages": "^2.0.1",
     "prettier": "^1.17.0"
   },
   "keywords": [
@@ -26,6 +47,7 @@
   ],
   "license": "MIT",
   "scripts": {
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",
@@ -35,7 +57,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": ""
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
