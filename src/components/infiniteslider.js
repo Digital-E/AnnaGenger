@@ -263,7 +263,7 @@ class InfiniteSlider extends React.PureComponent {
 
             }
 
-            // if(this.props.isChrome === false && this.windowWidth >= 992) return;
+            if(this.props.isChrome === false && this.windowWidth >= 992) return;
 
                 window.addEventListener('scroll',this.handleSliderScroll);
     
