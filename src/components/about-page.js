@@ -1,5 +1,5 @@
 import React from "react"
-import Logo from "../images/AnnaGengerLogo.svg"
+import Logo from "../images/AnnaGengerLogoAbout.svg"
 import { StaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import _ from 'lodash'
@@ -7,11 +7,6 @@ import posed from 'react-pose'
 
 import anime from '../../node_modules/animejs'
 
-import {TweenLite} from "gsap/TweenMax"
-
-import SEO from "../components/seo"
-
-import InfiniteSlider from "../components/infiniteslider"
 
 const Drawer = posed.div({
       openDrawer: {
@@ -172,7 +167,7 @@ const Footer = styled.div`
   bottom: 0;
   height: 120px;
   width: 100%; 
-  color: #ed6d2d !important;
+  color: #FF6600 !important;
   font-family: 'Cormorant-Bold';
   font-size: 18px;
   z-index: 999;
@@ -195,7 +190,7 @@ const Socials = styled.div`
     transform-origin: left bottom;
     transform: rotateZ(-90deg) translateY(-50%);
     overflow: hidden;
-    color: #ed6d2d !important;
+    color: #FF6600 !important;
     font-family: 'Cormorant-Bold';
     font-size: 24px;
 

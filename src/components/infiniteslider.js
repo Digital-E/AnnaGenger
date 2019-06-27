@@ -3,7 +3,6 @@ import PropTypes from "prop-types"
 import React from "react"
 import Img from "gatsby-image"
 import styled from "styled-components"
-import PerfectScrollbar from "react-perfect-scrollbar"
 
 import posed from "react-pose"
 import _ from 'lodash'
@@ -11,32 +10,8 @@ import Flickity from 'react-flickity-component'
 
 import {TweenLite} from "gsap/TweenMax"
 
-// require('intersection-observer')
+require('intersection-observer')
 
-
-const StyledPerfectScrollbar = styled(PerfectScrollbar)`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  overflow-x: scroll;
-  z-index: 999;
-  cursor: pointer !important;
-
-  .ps__rail-x {
-      display: none;
-  }
-
-  .ps__rail-y {
-    display: none;
-}
-  
-  div:nth-child(1) {
-    display: none !important;
-    width: auto !important;
-  }
-`
 
 const StyledInfiniteScroll = styled.div`
   position: relative;
@@ -76,6 +51,7 @@ const ZoomDiv = posed.div({
      position:'fixed',
      top: (props) => { return props.windowWidth >= 992 ? (props.windowHeight / 2) - 175 - 25 : (props.windowHeight / 2) - 75 - 25 },
      scale: 1.6,
+    //  height: (props) => { return props.windowHeight },
      transition: {ease: [0.08, 0.69, 0.2, 0.99], duration: 300 },
      flip: true,
     },
@@ -101,7 +77,7 @@ const StyledZoomDiv = styled(ZoomDiv)`
     }
 `
 
-const PerfectScrollbarHolder = styled.div`
+const Holder = styled.div`
     position: relative;
     height: 150px;
     margin-bottom: 150px;
@@ -112,8 +88,7 @@ const PerfectScrollbarHolder = styled.div`
 
     @media(min-width: 992px) {
         height: 350px; 
-    }
-    
+    }  
 `
 
 const Frame = posed.div({
@@ -257,9 +232,6 @@ class InfiniteSlider extends React.PureComponent {
 
     componentDidUpdate(){
         if(this.flkty) {
-            // this.flkty.applyForce(0);
-            // this.flkty.startAnimation();
-            // this.flkty.dragEnd();
             this.flkty.startAnimation();
         }
     }
@@ -278,15 +250,10 @@ class InfiniteSlider extends React.PureComponent {
 
         this.windowWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
-
-        // window.addEventListener('resize', () => {
-        //     this.windowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-        // });
-
         
         setTimeout(function() {
 
-            if(this.windowWidth <= 992) {
+            if(this.props.isMobile) {
 
                 return 
 
@@ -296,7 +263,7 @@ class InfiniteSlider extends React.PureComponent {
 
             }
 
-            if(this.props.isChrome === false && this.windowWidth >= 992) return;
+            // if(this.props.isChrome === false && this.windowWidth >= 992) return;
 
                 window.addEventListener('scroll',this.handleSliderScroll);
     
@@ -637,7 +604,7 @@ class InfiniteSlider extends React.PureComponent {
 
        
         return (
-            <PerfectScrollbarHolder ref={div => this.newRef = div} className={this.state.isZoomed ? 'open-holder block-slider' : 'closed-holder block-slider' } onTouchStart={this._onTouchStart} onTouchEnd={this._onTouchEnd} onTouchMove={this._onTouchMove}>
+            <Holder ref={div => this.newRef = div} className={this.state.isZoomed ? 'open-holder block-slider' : 'closed-holder block-slider' } onTouchStart={this._onTouchStart} onTouchEnd={this._onTouchEnd} onTouchMove={this._onTouchMove}>
             <StyledZoomDiv  windowHeight={this.windowHeight} windowWidth={this.windowWidth} pose={this.state.isZoomed ? 'open' : 'closed' }>
             { allData != null ?
 
@@ -706,7 +673,7 @@ class InfiniteSlider extends React.PureComponent {
                 <span onMouseEnter={this.props.mouseEnterLink} onMouseLeave={this.props.mouseLeaveLink} className="can-click" onClick={this.toggleZoom}>close</span>
             </StyledCloseButton> 
             </StyledZoomDiv>
-            </PerfectScrollbarHolder>
+            </Holder>
         )
     }
 }
