@@ -126,6 +126,9 @@ body {
   color: black;
   overflow: hidden;
 }
+.small {
+  font-family: 'cormorant-regular'
+}
 
 .ml0.ml1.ml2 {
   font-size: 14px;

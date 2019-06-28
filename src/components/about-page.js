@@ -38,10 +38,10 @@ const Drawer = posed.div({
 
 
 let BackgroundImage = styled.div`
-  position: relative;
-  // top: 50%;
-  // left: 50%;
-  // transform: translate(-50%,-50%);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
   width: 50%;
   margin: 35px auto;
   z-index: -1;
@@ -118,10 +118,10 @@ const List = styled.ul`
   padding-left: 0;
 
 
-  li:nth-child(1) {
-    // margin-left: -25px;
-    margin-bottom: 25px;
-  }
+  // li:nth-child(1) {
+  //   // margin-left: -25px;
+  //   margin-bottom: 25px;
+  // }
 
   @media(min-width: 992px) {
 
@@ -130,6 +130,7 @@ const List = styled.ul`
 
 const ListTitle = styled.li`
   font-family: Cormorant-Regular;
+  list-style: none;
 `
 
 const ListItem = styled.li`
@@ -217,6 +218,8 @@ class AboutPage extends React.Component {
 
     this.allCollections = [];
 
+    this.dataArray = [];
+
     this.handleScroll = this.handleScroll.bind(this);
     this.handleThrottledScroll = _.throttle(this.handleThrottledScroll.bind(this), 200);
 
@@ -226,6 +229,7 @@ class AboutPage extends React.Component {
     this.mouseEnterLink = this.mouseEnterLink.bind(this);
 
     this.dynamicLink = [true, true, true];
+    
 
   }
 
@@ -237,12 +241,6 @@ class AboutPage extends React.Component {
       this.images = Object.values(data);
     }
 
-
-    // let collectionData = new collectionFetchData(this.props.data);
-
-    // this.props.data.map((data) => {
-    //   return allCollections.push(new collectionFetchData(data));
-    // });
 
     let collectionData = new collectionFetchData(this.props.data);
 
@@ -256,6 +254,11 @@ class AboutPage extends React.Component {
   }
 
   componentDidMount() {
+
+    Object.keys(this.props.data.prismicAboutpage.data).forEach((item, index)=>{
+      let value = Object.values(this.props.data.prismicAboutpage.data)[index];
+      this.dataArray.push({title: item, value: value});
+    });
 
     this.container = this.infiniteScroll;
 
@@ -357,6 +360,8 @@ mouseLeaveLink = () => {
 
   render(){
 
+    console.log(this.dataArray);
+
     return(
       <>
       <div ref={div => this.aboutRef = div} style={{opacity: 0}}>
@@ -375,202 +380,34 @@ mouseLeaveLink = () => {
           <MainTitle>
             anna genger, 1978, de
           </MainTitle>
-        <List>
-              <ListItem>
-                <Date>• 2005–2007</Date>	ma	painting,	royal	college	of	art, london
-              </ListItem>
-              <ListItem>
-                <Date>• 2001–2005</Date>	ba	fine	art	(sculpture), slade	school of fine art, london
-              </ListItem>
-              <ListItem>
-                <Date>• 2000–2001</Date>	foundation diploma	in art and design, central saint martins college of	art
-              </ListItem>
-        </List>
-        </Container>
+          </Container>
 
-        <Container>
-        <List>
-          <ListTitle>exhibitions <br/>solo exhibitions</ListTitle>
-              <ListItem>
-                <Date>• 2017</Date>	„ANNA GENGER“, GALERIE APLANAT, HAMBURG, GERMANY
-              </ListItem>
-              <ListItem>
-                <Date>• 2016</Date>	„BIRDS OF PREY“, GALERIE BIESENBACH, KÖLN, GERMANY
-              </ListItem>
-              <ListItem>
-                <Date>• 2014</Date>	„BERNICE BOBS HER HAIR“, GALERIE BIESENBACH, KÖLN, GERMANY
-              </ListItem>
-
-            <ListTitle>SELECTED GROUP EXHIBITIONS</ListTitle>
-
-              <ListItem>
-                <Date>• 06.05–15.05.2016</Date>	HILDEGUNDE VON MER / GENGER&GLUNZ MEERBUSCH, GERMANY
-              </ListItem>
-              <ListItem>
-                <Date>• 12.02 -14.02.2016</Date>	GENGER&GLUNZ, HUSAVIK, ICELAND
-              </ListItem>              
-              <ListItem>
-                <Date>• 12.02–14.02.2016</Date>	KEINE FARBE SCHWARZ, FREITAGSSALON, HAMBURG
-              </ListItem>
-              <ListItem>
-                <Date>• 24.07–31.07.2015</Date>	ANOTHER SUMMER OF PAPER, GALERIE BIESENBACH, COLOGNE
-              </ListItem>
-              <ListItem>
-                <Date>• 12.06.2015–18.06.2015</Date> DIE KARTEN LIEGEN AUF DEM TISCH, FREITAGSSALON, HAMBURG, ANNA GENGER, VIVIANE GERNAERT
-              </ListItem>
-              <ListItem>
-                <Date>• 2014</Date>	„STEFAN SANDROCK“, GALERIE FEINKUNSTKRÜGER, HAMBURG
-              </ListItem>
-              <ListItem>
-                <Date>• 2013</Date>	„SUMMER OF PAPER“, GALERIE BIESENBACH, KÖLN "WARIS AND ROSE", THE AGENCY GALLERY, LONDON
-              </ListItem>
-              <ListItem>
-                <Date>• 2012</Date>	„STILLSTEHENDE SACHEN“ AUS DER SAMMLUNG SØR RUSCHE, MUSEUM ABTEI LIESBORN <br/>DES KREISES WARENDORF, WADERSLOH-LIESBORN
-              </ListItem>
-              <ListItem>
-                <Date>• 2011</Date>	BEYOND DECEPTION, GALLERI ERIK STEEN, OSLO <br/>HERBSTZEITLOSE, STRZELSKI GALERIE, STUTTGART <br/>CORRESPONDENCE ART, A&D GALLERY, LONDON
-              </ListItem>
-              <ListItem>
-                <Date>• 2010</Date>	ROT: ANNA GENGER, DAVID JONES, SIMON SCHUBERT, CHRISTINE SCHULZ UND VERONIKA VEIT, UPSTAIRS BERLIN, BERLIN <br/>
-                                    2. EBERHARD-DIETZSCH-KUNSTPREIS 2010, GERAER BANK, GERA <br/>
-                                    LUST2010, BAZONNALE, WEIMAR <br/>
-                                    DRAW ME A…, PABLO ALONSO, ANNA GENGER, ANSELM REYLE, SIMON SCHUBERT, DIAMANTIS SOTIROPOULOS, FRANK STELLA, ANDY WARHOL, TOM WESSELMANN
-              </ListItem>
-              <ListItem>
-                <Date>• 2009</Date>	THE BASIS OF OPTIMISM, KUNSTRAUM T27, BERLIN <br/>
-                                    MANATURE, MENSCH UND NATUR, ALTE POST, “48 STUNDEN NEUKÖLLN”, 11. KUNST- UND <br/>
-                                    KULTURFESTIVAL BERLIN, BERLIN
-              </ListItem>
-              <ListItem>
-                <Date>• 2008</Date>	ANNA GENGER: BROKEN HEART’S TANGO FOR TWO IN ARTRMXCOLOGNE VOL.01, <br/>
-                                    COLOGNE TALES OF FLAMES, PROJEKTRAUM, KÜNSTLERHAUS BETHANIEN, BERLIN <br/>
-                                    PAPER8, UPSTAIRS BERLIN, BERLIN
-              </ListItem>
-        </List>
-        </Container>
-
-        <Container>
-        <List>
-
-            <ListTitle>Awards</ListTitle>
-
-              <ListItem>
-                <Date>• 2003</Date>	AUDREY WYKEHAM PRIZE
-              </ListItem>
-        </List>
-
-        </Container>
-
-        <Container>
-        <List>
-
-            <ListTitle>SCHOLARSHIPS</ListTitle>
-
-              <ListItem>
-                <Date>• 2007</Date>	RÉSIDENCES SECONDAIRES, PARC SAINT LÉGER, CENTRE D’ART CONTEMPORAIN, POUGUES-LES-EAUX
-              </ListItem>
-        </List>
-
-        </Container>  
-
-        <Container>
-        <List>
-
-            <ListTitle>RESIDENCES</ListTitle>
-
-              <ListItem>
-                <Date>• JANUARY/FEBRUARY 2016</Date>	FJÚK ART CENTRE, HUSAVIK, ICELAND
-              </ListItem>
-              <ListItem>
-                <Date>• JANUARY/FEBRUARY 2017</Date>	NELIMARKKA MUSEUM, ALJÄRVI FINLAND
-              </ListItem>
-        </List>
-
-        </Container>
-
-        <Container>
-        <List>
-
-            <ListTitle>BOOKS AND CATALOGUES</ListTitle>
-
-              <ListItem>
-                <Date>• 2009</Date>	MANATURE, MENSCH UND NATUR, “48 STUNDEN NEUKÖLLN”, 11. KUNST- UND KULTURFESTIVAL BERLIN, BERLIN 2009
-              </ListItem>
-              <ListItem>
-                <Date>• 2007</Date>	16/ART WORKS, BANK OF AMERICA, FRANKFURT AM MAIN 2007 <br/>
-                                    DECADENCE, DECAY & THE DEMIMONDE, EDITED BY BEN AUSTIN, LONDON 2007 <br/>
-                                    BLOOD, SWEAT ‘N TEARS, UPSTAIRS BERLIN, BERLIN 2007 <br/>
-                                    THE GREAT EXHIBITION 2007, ROYAL COLLEGE OF ART, LONDON 2007
-              </ListItem>
-              <ListItem>
-                <Date>• 2006</Date>	SOLITUDE. LONDON ARTISTS TODAY, UPSTAIRS BERLIN, BERLIN 2006
-              </ListItem>
-              <ListItem>
-                <Date>• 2005</Date>	MORPHO EUGENIA, GALLERIA D’ARTE CONTEMPORANEA DELLA REPUBBLICA DI SAN MARINO, SAN MARINO
-              </ListItem>
-        </List>
-
-        </Container>
-
-        <Container>
-        <List>
-
-            <ListTitle>Articles</ListTitle>
-
-              <ListItem>
-                <Date>• 2009</Date>	VANESSA PÉREZ, ZONA DE TALENTOS, IN: EL UNIVERSAL.COM.MX, 12. APRIL 2009 <br/>
-                                    ERNÖ HORVATH, WELTENTRÄUME VON ANNE GENGER, IN: DIE WELT, 3. APRIL 2009 <br/>
-                                    THEA HEROLD, WURMLÖCHER, IN: TAGESSPIEGEL, 21. MÄRZ 2009 <br/>
-                                    WRITER NAME UNPUBLISHED, OUT OF TUNE, CHERRIES AND PRUNE, IN: ARTREVIEW, JANUAR & FEBRUAR 2009
-              </ListItem>
-              <ListItem>
-                <Date>• 2008</Date> „ART OFF SHOW“ IN KÖLN, IN: WDR.DE, 24. AUGUST 2008 <br/>
-                                    HANNA STYRIE, SPIELWIESEN FÜR DIE KUNST, IN: KÖLNISCHE RUNDSCHAU, 23. AUGUST 2008
-              </ListItem>
-              <ListItem>
-                <Date>• 2007</Date> FREIRE BARNES, YOUNG MASTERS, IN: BON MAGAZINE, HERBSTAUSGABE 2007 <br/>
-                                    CHRISTIAN HERCHENRÖDER, DER MARKT LÄSST DIE MUSKELN SPIELEN, IN: HANDELSBLATT, 5.-7. OKTOBER 2007 <br/>
-                                    JULIA SIEPMANN, KUNST-GESCHICHTE AM GRENZÜBERGANG, IN: WELT AM SONNTAG, 30. SEPTEMBER 2007 <br/>
-                                    DESTINATION NEWS, ‚CELEBRATION’ AND ‚WARNING’ OF EXCESS THROUGH ART, IN: REDCARNATIONHOTELS.COM, 28.9.07 <br/>
-                                    ARIFA AKBAR, COLLECTORS DECLARE RCA’S CLASS OF 2007 ITS ‘BEST DEGREE SHOW IN YEARS’, IN: THE INDEPENDENT, 15. JUNI 2007
-              </ListItem>
-              <ListItem>
-                <Date>• 2006</Date>	ANNA GENGER, IN: ARTISTS & ILLUSTRATORS 2006 <br/>
-                                    GERHARD CHARLES RUMP, LONDONER EINSAMKEITEN IN DER GALERIE „UPSTAIRS“, IN: DIE WELT, 10. MÄRZ 2006 <br/>
-                                    KATRIN WITTNEVEN, JUGEND-STIL, IN: DER TAGESSPIEGEL, 4. FEBRUAR 2006 <br/>
-                                    CHRISTIANE MEIXNER, JUNGE KUNST AUS LONDON, IN: BERLINER MORGENPOST, 27. JANUAR 2006 <br/>
-                                    UPSTAIRS BERLIN, IN: GALLERY GUIDE EUROPE, JANUAR 2006 <br/>
-                                    SOLITUDE: YOUNG LONDON ARTISTS, IN: CONTEMPORARY, JANUAR 2006
-              </ListItem>
-        </List>
-
-        </Container>   
-
-                <Container>
-        <List>
-
-            <ListTitle>Radio</ListTitle>
-
-              <ListItem>
-                <Date>• 2009</Date> BARBARA WIEGAND, GALERIENRUNDGANG, IN: INFORADIO RBB, 24. MÄRZ 2009
-              </ListItem>
-
-        </List>
-
-        </Container>                                           
-
+          {this.dataArray ? this.dataArray.map(item => (
+              <Container>
+                <ListTitle>{item.title.split('_').join(' ') === 'bio' ? '' : item.title.split('_').join(' ')}</ListTitle>
+                  <List>
+                    {item.value.map(item => (
+                      <ListItem dangerouslySetInnerHTML={{__html: item.list_element.text}}/>
+                    ))
+                    }
+                  </List>
+              </Container>
+          ))
+          :
+          <div></div>
+          }
         </Biographie>
       </About>
       <Container>
       <Footer className={'footer'}>
-          <span className="can-click-parent">website by <span className="can-click"><span className="ml0"><a href="https://karlanders.io" target="_blank">Karl Anders</a></span></span></span>
-          <span className="socials-mobile"><span><a href="https://www.instagram.com/annagenger/" target="_blank">instagram</a></span></span>
+          <span className="can-click-parent"><span className="small">website by </span><span className="can-click"><span className="ml0"><a href="https://karlanders.io" target="_blank">Karl Anders</a></span></span></span>
+          <span className="socials-mobile"><span><a href="mailto: anna@annagenger.com" target="_blank">contact</a></span></span>
           <span className="socials-mobile"><span><a href="https://www.instagram.com/annagenger/" target="_blank">facebook</a></span></span>
         </Footer>
       </Container>
       <Socials>
           <span className="can-click"><span className="ml1"><a href="https://www.instagram.com/annagenger/" target="_blank">instagram</a></span></span>
-          <span className="can-click"><span className="ml2"><a href="https://www.instagram.com/annagenger/" target="_blank">facebook</a></span></span>
+          <span className="can-click"><span className="ml2"><a href="mailto: anna@annagenger.com" target="_blank">contact</a></span></span>
       </Socials>
       </AboutDiv>
       </Drawer>
@@ -584,44 +421,56 @@ mouseLeaveLink = () => {
 export default (props) => (
     <StaticQuery
     query={graphql`
-    query {
-      imageone: file(relativePath: { eq: "img-about-1.jpg" }) {
-        childImageSharp {
-          # Specify the image processing specifications right in the query.
-          # Makes it trivial to update as your page's design changes.
-          fluid(maxWidth: 1500) {
-            ...GatsbyImageSharpFluid
+    query aboutpage {
+      prismicAboutpage {
+        data {
+          bio {
+            list_element {
+              text
+            }
           }
+          solo_exhibitions {
+            list_element {
+              text
+            }
+          }
+          selected_group_exhibitions {
+            list_element {
+              text
+            }
+          }
+          awards {
+            list_element {
+              text
+            }
+          }
+          scholarships {
+            list_element {
+              text
+            }
+          }
+          residences {
+            list_element {
+              text
+            }
+          } 
+          books_and_catalogues {
+            list_element {
+              text
+            }
+          }
+          articles {
+            list_element {
+              text
+            }
+          }
+          radio {
+            list_element {
+              text
+            }
+          }            
         }
       }
-      imagetwo: file(relativePath: { eq: "img-about-2.jpg" }) {
-        childImageSharp {
-          # Specify the image processing specifications right in the query.
-          # Makes it trivial to update as your page's design changes.
-          fluid(maxWidth: 1500) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-      imagethree: file(relativePath: { eq: "img-about-2.jpg" }) {
-        childImageSharp {
-          # Specify the image processing specifications right in the query.
-          # Makes it trivial to update as your page's design changes.
-          fluid(maxWidth: 1500) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-      imagefour: file(relativePath: { eq: "img-about-2.jpg" }) {
-        childImageSharp {
-          # Specify the image processing specifications right in the query.
-          # Makes it trivial to update as your page's design changes.
-          fluid(maxWidth: 1500) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    
     }
     `}
     render={data => (
