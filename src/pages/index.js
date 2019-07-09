@@ -6,6 +6,7 @@ import styled from "styled-components"
 import _ from 'lodash'
 import posed from 'react-pose'
 import Mouse from '../components/mouse'
+import BackgroundWarp from '../components/backgroundwarp'
 
 import {TweenLite, Power3} from 'gsap/TweenMax'
 
@@ -20,8 +21,6 @@ import PlusButton from '../images/Plus_Button.svg'
 import MinusButton from '../images/Minus_Button.svg'
 
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
-
-import Lottie from '../components/lottiecontrol'
 
 
 const Transition = posed.div({
@@ -89,6 +88,7 @@ let BackgroundImage = styled.img`
   margin: 0;
 `
 
+
 let BackgroundImage2 = styled.img`
   position: fixed;
   top: 50%; // required as well.
@@ -111,6 +111,7 @@ let ProjectDiv = styled.div`
   z-index: 800 !important;
   overflow-y: scroll ;
   overflow-x: hidden;
+  padding-top: 100px;
 
   @media(min-width: 992px) {
     position: relative;
@@ -214,38 +215,6 @@ const Spacer = styled.div`
   background: transparent
 `
 
-const CornerSnipTop = styled.div`
-  clip-path: 
-  polygon(
-    3% 0%,     /* top left */
-    97% 0%,    /* top right */
-    100% 100%,  /* bottom right */
-    100% 100%,  /* bottom right */
-    0% 100%,   /* bottom left */
-    0 100%      /* bottom left */
-  );
-
-  position: relative;
-  text-align: center;
-  color: white;
-  font-family: 'Cormorant-Bold';
-  font-size: 36px;
-  background-color: rgb(200,0,0);
-  height: 50px;
-  width: 100%;
-`
-const CornerSnipBottom = styled.div`
-clip-path: polygon(0 0, 100% 0, 97% 100%, 3% 100%);
-
-  position: relative;
-  text-align: center;
-  color: white;
-  font-family: 'Cormorant-Bold';
-  font-size: 36px;
-  background-color: rgb(200,0,0);
-  height: 50px;
-  width: 100%;
-`
 const Projects = styled.div`
   background-color: rgb(200,0,0);
   color: white;
@@ -323,10 +292,13 @@ class IndexPage extends React.Component {
 
     this.container = this.infiniteScroll;
 
-    TweenLite.to(this.backgroundImageRef1,5,{ opacity: 1, ease:Power3.easeInOut})
+    // setTimeout(() => {
+    //   TweenLite.to(this.backgroundImageRef1,3,{ opacity: 1, ease:Power3.easeInOut});
+    // }, 2000);
+
 
     setTimeout(() => {
-      TweenLite.to(document.querySelector('.spacer-top'),1,{height: '0',ease:Power3.easeInOut, 
+      TweenLite.to(document.querySelector('.spacer-top'),1.2,{height: '0',ease:Power3.easeInOut, 
       onComplete: () => {
         document.querySelector('body').style.position = "absolute";
         TweenLite.to(this.aboutButtonRef,1,{y: -150,ease:Power3.easeInOut});
@@ -437,15 +409,10 @@ resizeBrowser() {
     } else {
 
       return
-      // pageHeight = container.scrollHeight;
-      // windowHeight = window.innerHeight;
-      // scrollAmount = container.scrollTop;
+
     }
 
     if(scrollAmount >= pageHeight - windowHeight - 500 && scrollAmount <= pageHeight - windowHeight) {
-
-
-        // this.counter ++;
 
         this.setState(prevState => ({
           collections: [...prevState.collections, ...this.allCollections]
@@ -537,16 +504,14 @@ _handleClick = () => {
         </StyledAboutMinus>
 
       <SpacerTop className="spacer-top"/>
- 
-      {/* <Lottie/> */}
 
-      <BackgroundImage ref={div => this.backgroundImageRef1 = div} src={Logo}/>
+      {/* <BackgroundImage ref={div => this.backgroundImageRef1 = div} src={Logo}/> */}
+      <BackgroundWarp />
 
- 
       <Drawer  pose={this.state.aboutIsOpen ? 'openIndex' : 'closedIndex'}> 
       <SEO title="Anna Genger" keywords={[`Anna`, `Genger`, `Projects`]} />
-      {/* <CornerSnipTop/> */}
-      <ProjectDiv  className={'infinite-scroll'} ref={this.infiniteScroll}>
+
+      <ProjectDiv className={'infinite-scroll'} ref={this.infiniteScroll}>
         {
           this.state.collections.map((item, index) => {
             return (
@@ -555,9 +520,9 @@ _handleClick = () => {
           })
         }
       </ProjectDiv>
-      {/* <CornerSnipBottom/> */}
+
       </Drawer>
-      {/* <Spacer/> */}
+
       <StyledOverlay onClick={this.handleAboutPageClick} pose={this.state.aboutIsOpen ? 'open' : 'closed'}/>
       <AboutPage open={this.state.aboutIsOpen}/>
       </Transition>

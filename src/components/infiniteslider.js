@@ -579,7 +579,7 @@ class InfiniteSlider extends React.PureComponent {
         this.props.mouseEnter('infiniteSliderIsNotZoomed');
         setTimeout(()=>{
             this.toggleZoom();
-        },500)
+        },0)
       }
 
     

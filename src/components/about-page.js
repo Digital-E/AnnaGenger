@@ -168,7 +168,8 @@ const Footer = styled.div`
   bottom: 0;
   height: 120px;
   width: 100%; 
-  color: #FF6600 !important;
+  // color: #FF6600 !important;
+  color: black !important;
   font-family: 'Cormorant-Bold';
   font-size: 18px;
   z-index: 999;
@@ -191,7 +192,7 @@ const Socials = styled.div`
     transform-origin: left bottom;
     transform: rotateZ(-90deg) translateY(-50%);
     overflow: hidden;
-    color: #FF6600 !important;
+    color: black !important;
     font-family: 'Cormorant-Bold';
     font-size: 24px;
 
@@ -360,7 +361,7 @@ mouseLeaveLink = () => {
 
   render(){
 
-    console.log(this.dataArray);
+    // console.log(this.dataArray);
 
     return(
       <>
@@ -386,8 +387,8 @@ mouseLeaveLink = () => {
               <Container>
                 <ListTitle>{item.title.split('_').join(' ') === 'bio' ? '' : item.title.split('_').join(' ')}</ListTitle>
                   <List>
-                    {item.value.map(item => (
-                      <ListItem dangerouslySetInnerHTML={{__html: item.list_element.text}}/>
+                    {item.value.map((item, index) => (
+                      <ListItem key={index} dangerouslySetInnerHTML={{__html: item.list_element.text}}/>
                     ))
                     }
                   </List>
