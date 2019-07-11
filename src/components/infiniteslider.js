@@ -593,7 +593,7 @@ class InfiniteSlider extends React.PureComponent {
             pageDots: false,
             freeScroll: true,
             wrapAround: this.props.isChrome === false && this.windowWidth >= 992 ? false : true,
-            lazyLoad: true,
+            lazyLoad: false,
             freeScrollFriction: 0.03,
             cellAlign: 'left',
         }
@@ -648,6 +648,8 @@ class InfiniteSlider extends React.PureComponent {
                             <div key={index} className={this.state.blurred[index] === false ? 'blurred image-to-blur' : 'image-to-blur'} onMouseEnter={() => {this._handleTitleChange(null, index)}} onMouseLeave={() => {this._handleTitleChange(null, index)}}>
                             <StyledImg className="slider-image" 
                                         style={{width: width }}
+                                        durationFadeIn={2000} 
+                                        backgroundColor="true"
                                         // alt={item.image_caption.text}
                             ref={img => this.imageRef = img} fluid={item.image.localFile.childImageSharp.fluid}/>
                             </div>

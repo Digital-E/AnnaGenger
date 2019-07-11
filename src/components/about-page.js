@@ -43,8 +43,9 @@ let BackgroundImage = styled.div`
   left: 50%;
   transform: translate(-50%,-50%);
   width: 50%;
-  margin: 35px auto;
-  z-index: -1;
+  margin: 0 auto;
+  z-index: 999;
+  pointer-events: none;
 
   img {
     display: block;
@@ -61,29 +62,14 @@ let AboutDiv = styled.div`
 
 -webkit-overflow-scrolling: touch;
 
-  // clip-path: 
-  // polygon(
-  //   0% 2%,     /* top left */
-  //   3% 0%,     /* top left */
-  //   97% 0%,    /* top right */
-  //   100% 2%,   /* top right */
-  //   100% 100%,  /* bottom right */
-  //   100% 100%,  /* bottom right */
-  //   0% 100%,   /* bottom left */
-  //   0 100%      /* bottom left */
-  // );
-
   text-transform: lowercase;
 
-  // position: fixed !important;
   overflow-y: scroll;
   width: 100vw;
   height: 100vh;
-  // top: 100vh;
   background-color: white;
   overflow-x: hidden;
-  z-index: 999;
-  // display: none;
+  z-index: 998;
   font-size: 24px;
   line-height: 26px;
 
@@ -148,15 +134,6 @@ const Container = styled.div`
   @media(min-width: 992px) {
     width: 70%;
   }
-`
-
-const CornerSnipLeft = styled.div`
-
-  clip-path: polygon(100% 0, 100% 0, 100% 100%, 0 100%, 0 5%);
-
-  background-color: white;
-  height: 100vh;
-  width: 50px;
 `
 
 const Footer = styled.div`
@@ -361,17 +338,14 @@ mouseLeaveLink = () => {
 
   render(){
 
-    // console.log(this.dataArray);
-
     return(
       <>
       <div ref={div => this.aboutRef = div} style={{opacity: 0}}>
       <Drawer windowWidth={this.windowWidth} style={{position: 'fixed', top: 0, zIndex: 995, display: 'flex'}}  pose={this.props.open ? 'openDrawer' : 'closedDrawer'}>
-      {/* <CornerSnipLeft/> */}
-      <AboutDiv className={'infinite-scrll'} ref={div => this.infiniteScroll = div} onClick={this.props.onClick}>
       <BackgroundImage>
         <img src={Logo}/>
       </BackgroundImage>
+      <AboutDiv className={'infinite-scrll'} ref={div => this.infiniteScroll = div} onClick={this.props.onClick}>
       <About>
         <Biographie>
           <Container>
@@ -383,8 +357,8 @@ mouseLeaveLink = () => {
           </MainTitle>
           </Container>
 
-          {this.dataArray ? this.dataArray.map(item => (
-              <Container>
+          {this.dataArray ? this.dataArray.map((item, index) => (
+              <Container key={index}>
                 <ListTitle>{item.title.split('_').join(' ') === 'bio' ? '' : item.title.split('_').join(' ')}</ListTitle>
                   <List>
                     {item.value.map((item, index) => (
