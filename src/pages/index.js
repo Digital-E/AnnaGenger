@@ -111,7 +111,7 @@ let ProjectDiv = styled.div`
   z-index: 800 !important;
   overflow-y: scroll ;
   overflow-x: hidden;
-  padding-top: 100px;
+  padding-top: 100vh;
 
   @media(min-width: 992px) {
     position: relative;
@@ -209,12 +209,6 @@ const SpacerTop = styled.div`
   background: transparent
 `
 
-const Spacer = styled.div`
-  position: relative;
-  height: 100px;
-  background: transparent
-`
-
 const Projects = styled.div`
   background-color: rgb(200,0,0);
   color: white;
@@ -292,20 +286,18 @@ class IndexPage extends React.Component {
 
     this.container = this.infiniteScroll;
 
-    // setTimeout(() => {
-    //   TweenLite.to(this.backgroundImageRef1,3,{ opacity: 1, ease:Power3.easeInOut});
-    // }, 2000);
-
 
     setTimeout(() => {
-      TweenLite.to(document.querySelector('.spacer-top'),1.2,{height: '0',ease:Power3.easeInOut, 
+      document.querySelector('.spacer-top').style.display = 'none';
+      TweenLite.to(document.querySelector('.infinite-scroll'),3,{ paddingTop: window.innerHeight / 1.3 ,ease:Power3.easeInOut, 
       onComplete: () => {
         document.querySelector('body').style.position = "absolute";
+        document.querySelector('body').style.overflow = "scroll";
         TweenLite.to(this.aboutButtonRef,1,{y: -150,ease:Power3.easeInOut});
       }
     });
 
-    },3000);
+    },5000);
 
 
     this.resizeBrowser();
@@ -505,7 +497,6 @@ _handleClick = () => {
 
       <SpacerTop className="spacer-top"/>
 
-      {/* <BackgroundImage ref={div => this.backgroundImageRef1 = div} src={Logo}/> */}
       <BackgroundWarp />
 
       <Drawer  pose={this.state.aboutIsOpen ? 'openIndex' : 'closedIndex'}> 

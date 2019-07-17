@@ -46,13 +46,13 @@ body {
   height: 100%;
 }
 
-@media(min-width: 992px) {
+/* @media(min-width: 992px) {
   body {
     position: absolute;
     overflow: auto;
     height: auto
   }
-}
+} */
 
 
 .infinite-slider:focus {outline:0;}
@@ -166,22 +166,11 @@ body {
   }
 }
 
-/* .scrollmagic-pin-spacer {
-  width: 100% !important;
-  height: 100% !important;
-  position: absolute;
-  top: 0 !important;
-} */
-
-.lottie-div {
-  position: fixed;
-}
-
 .mouse-invisible {
   display: none;
 }
 
-.remove-blur {
-  filter: blur(0) !important;
+.opacity-logo {
+  opacity: 1 !important;
   transition-duration: 5s;
 }

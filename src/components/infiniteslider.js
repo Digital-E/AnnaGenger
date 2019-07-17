@@ -13,24 +13,6 @@ import {TweenLite} from "gsap/TweenMax"
 require('intersection-observer')
 
 
-const StyledInfiniteScroll = styled.div`
-  position: relative;
-  overflow-y: hidden;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  z-index: 1;
-  cursor: pointer !important;
-
-  div:nth-child(1) {
-    display: none !important;
-    height: 0px;
-  }
-  
-  }
-`
-
 
 const StyledImg = styled(Img)`
     width: 100%;
@@ -89,6 +71,10 @@ const Holder = styled.div`
     @media(min-width: 992px) {
         height: 350px; 
     }  
+
+    .slider-image picture img {
+        transition: opacity ease 1s !important;
+    }
 `
 
 const Frame = posed.div({
