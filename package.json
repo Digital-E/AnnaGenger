@@ -20,7 +20,7 @@
     "gatsby-source-filesystem": "^2.0.33",
     "gatsby-source-prismic": "^2.3.0-alpha.3",
     "gatsby-transformer-sharp": "^2.1.19",
-    "gsap": "^2.1.2",
+    "gsap": "^3.6.0",
     "intersection-observer": "^0.7.0",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
